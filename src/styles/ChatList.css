@@ -1,0 +1,10 @@
+.chatlist {
+  padding: 10px;
+  text-align: left;
+  background: #3a7bdd;
+  color: rgb(241, 134, 34);
+  font-size: 20px;
+
+  display: inline-block;
+  width: 30%;
+}
