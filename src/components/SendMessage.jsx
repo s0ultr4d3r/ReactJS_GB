@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import TextField from "material-ui/TextField";
+
 import Button from "material-ui/FlatButton";
 
 export default class SendMessage extends React.Component {

@@ -1,11 +1,7 @@
-.messages{
-    
-   flex-direction: column;
-   background-color: #e2e2e2;
-   height: 50%;
-   width: 70%;
-   padding: 20px;
-   overflow-y: scroll;
-   display: inline-block;
-  
+.messages {
+  display: flex;
+  flex-direction: column;
+  background-color: #e2e2e2;
+  padding: 20px;
+  overflow-y: scroll;
 }

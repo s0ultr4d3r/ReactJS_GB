@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// import styles from "../styles/Message";
+import styles from "../styles/Message";
 
 export default class Message extends React.Component {
   static propTypes = {

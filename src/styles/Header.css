@@ -1,9 +1,8 @@
 .header {
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    background: #1abc9c;
-    color: white;
-    font-size: 30px;
-    
-  }
+  width: 100%;
+  background-color: cornflowerblue;
+  color: blanchedalmond;
+  font-size: 48px;
+  text-align: center;
+  align-self: center;
+}

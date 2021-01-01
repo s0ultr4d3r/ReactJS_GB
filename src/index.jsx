@@ -1,12 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
- //// import App from './components/App.jsx';
-import Layout from './components/Layout.jsx';
-// import Chatlist from  './components/ChatList'
+import App from "./components/App.jsx";
 
-ReactDOM.render(
-    
-    <Layout/>,
-    document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById("root"));
