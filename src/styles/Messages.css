@@ -1,3 +1,41 @@
+main {
+    height: 100%;
+   width: 100%;
+   
+   margin: auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+}
+
+.main-top {
+    width: 100%;
+    height: auto;
+
+}
+.main-container {
+   
+    overflow: hidden;
+    min-width:auto;    
+}
+
+.main-box {
+    white-space: nowrap;
+    min-width:auto;
+    vertical-align: top; 
+}
+
+.main-box-1st {
+   
+    
+    min-width:auto;
+    display: inline-block;
+    
+   
+    
+   
+}
 
 .main-box-2nd {
    

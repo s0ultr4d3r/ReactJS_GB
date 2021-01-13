@@ -1,19 +1,16 @@
 import React from "react";
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
-import MessageList from "./MessageList";
-import SendMessage from "./SendMessage";
 import Header from "./Header";
-import ChatList from "./ChatList";
- import Messages from './pages/Messages';
- import PropTypes from 'prop-types';
+import Messages from "./pages/Messages";
+import PropTypes from "prop-types";
 
- import "../styles/App.css";
+import "../styles/App.css";
 
 export default class App extends React.Component {
-   constructor(props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -26,15 +23,17 @@ export default class App extends React.Component {
 
   static propTypes = {
     chatId: PropTypes.number,
-};
+  };
 
-static defaultProps = {
-  chatId: 1,
-};
+  static defaultProps = {
+    chatId: 1,
+  };
 
   componentDidUpdate(prevProps, prevState) {
-     if (prevState.messages.length < this.state.messages.length && 
-      this.state.messages[this.state.messages.length - 1].author === 'me') {
+    if (
+      prevState.messages.length < this.state.messages.length &&
+      this.state.messages[this.state.messages.length - 1].author === "me"
+    ) {
       setTimeout(() => {
         this.setState({
           messages: [
@@ -55,14 +54,15 @@ static defaultProps = {
 
   send = (objMsg) => {
     this.setState({ messages: [...this.state.messages, objMsg] });
-  }; 
+  };
 
   render() {
     console.log("render");
     return (
       <MuiThemeProvider>
-        <main>
         <BrowserRouter>
+          <main>
+            {/*
         <div className="main-top">
             <Header chatId={ this.props.chatId }/>
             </div>
@@ -77,20 +77,28 @@ static defaultProps = {
               </div>
             </div>
           
-    </div> 
-    {/* <nav>
+        </div> */}
+            {/* <nav>
      <Link to="/chat/1">Chat1</Link>
      <Link to="/chat/2">Chat2</Link>
      <Link to="/chat/3">Chat3</Link>
      <Link to="/chat/4">Chat4</Link>
     </nav> */}
-      <Switch>
-        <Route exact path="/" component={Messages} />
-        <Route path="/chat/:chatId" render={obj => <Messages chatId={obj.match.params.chatId}/>}/>
-       
-      </Switch> 
-          </BrowserRouter>
-        </main>
+            <Switch>
+              <Route exact path="/" component={Messages} />
+              <Route
+                path="/chat/:chatId"
+                render={(obj) => <Messages chatId={obj.match.params.chatId} />}
+              />
+              <div className="main-top">
+                <Route
+                  path="/chat/:chatId"
+                  render={(obj) => <Header chatId={obj.match.params.chatId} />}
+                />
+              </div>
+            </Switch>{" "}
+          </main>
+        </BrowserRouter>
       </MuiThemeProvider>
     );
   }

@@ -4,7 +4,6 @@ import TextField from "material-ui/TextField";
 import Button from "material-ui/FlatButton";
 
 export default class SendMessage extends React.Component {
-  
   /* static propTypes = {
     chatId: PropTypes.number.isRequired,
   };
@@ -96,9 +95,8 @@ handleChange = (event) => {
   }
 
 */
- 
 
-   state = {
+  state = {
     message: "",
   };
 
@@ -114,10 +112,11 @@ handleChange = (event) => {
   handleChange = (event) => this.setState({ message: event.target.value });
 
   handleKeyUp = (event) => {
-    if (event.keyCode === 13) { // Enter
-        this.handleSendMessage(this.state.input, 'me')
+    if (event.keyCode === 13) {
+      // Enter
+      this.handleSendMessage(this.state.input, "me");
     }
-};
+  };
 
   render() {
     return (
@@ -126,12 +125,12 @@ handleChange = (event) => {
           value={this.state.message}
           onChange={this.handleChange}
           hintText="Введите сообщение"
-          multiline={true}
+          // multiline={value.toString()}
           name={"message"}
-          onKeyUp={ this.handleKeyUp }
+          onKeyUp={this.handleKeyUp}
         />
         <Button onClick={this.send}>Send</Button>
       </>
     );
   }
-} 
+}
