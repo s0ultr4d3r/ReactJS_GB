@@ -1,14 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'; 
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
-import Header from './Header';
+import Message from './Message.jsx';
+import MessageList from './MessageList';
+import SendMessage from './SendMessage';
 import Messages from './pages/Messages';
-import PropTypes from 'prop-types';
-import Router from './Router';
+import Router from "./Router";
+import '../styles/App.css';
 
-// import "../styles/App.css";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,23 +21,17 @@ export default class App extends React.Component {
       timeout: null,
       messages: [],
       interval: null,
-    };
+    }; 
   }
 
-  static propTypes = {
-    chatId: PropTypes.number,
-  };
-
-  static defaultProps = {
-    chatId: 1,
-  };
-
   componentDidUpdate(prevProps, prevState) {
+    console.log('componentWillUpdate');
+    console.log(this.state.messages.length, this.state.messages.length % 2);
     if (
-      prevState.messages.length < this.state.messages.length &&
+      prevState.messages.length < this.state.messages.lenght &&
       this.state.messages[this.state.messages.length - 1].author === 'me'
     ) {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         this.setState({
           messages: [
             ...this.state.messages,
@@ -43,14 +39,8 @@ export default class App extends React.Component {
           ],
         });
         this.setState({ timeout });
-      }, 1000);
+      }, 2000);
     }
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.state.timeout);
-
-    this.setState({ timeout: null });
   }
 
   send = (objMsg) => {
@@ -60,35 +50,31 @@ export default class App extends React.Component {
   render() {
     console.log('render');
     return (
-      <MuiThemeProvider>
+      <main>
         <BrowserRouter>
-          <main>
-            {/*
-        <div className="main-top">
-            <Header chatId={ this.props.chatId }/>
-            </div>
-          <div className="main-container">
-            <div className="main-box">
-              <div className="main-box-1st  chatlist">
-                <ChatList />
-              </div>
-              <div className="main-box-2nd">
-                <MessageList messages={this.state.messages} />
-                <SendMessage send={this.send} />
-              </div>
-            </div>
-          
-        </div> */}
-            {/* <nav>
-     <Link to="/chat/1">Chat1</Link>
-     <Link to="/chat/2">Chat2</Link>
-     <Link to="/chat/3">Chat3</Link>
-     <Link to="/chat/4">Chat4</Link>
-    </nav> */}
+          <Grid container>
+            <Grid item xs={3}>
+              <Grid container direction="column">
+                <Grid item>
+                  <Link to="/chat/1">Chat 1</Link>
+                </Grid>
+                <Grid item>
+                  <Link to="/chat/2">Chat 2</Link>
+                </Grid>
+                <Grid item>
+                  <Link to="/chat/3">Chat 3</Link>
+                </Grid>
+                <Grid item>
+                  <Link to="/chat/4">Chat 4</Link>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item>
             <Router />
-          </main>
+            </Grid>
+          </Grid>
         </BrowserRouter>
-      </MuiThemeProvider>
+      </main>
     );
   }
 }

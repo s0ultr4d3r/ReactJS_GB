@@ -1,50 +1,41 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import MessageList from "../MessageList";
-import SendMessage from "../SendMessage";
-import Header from "../Header";
-import ChatList from "../ChatList";
-
-import "../../styles/Messages.css";
+import MessageList from '../MessageList';
+import SendMessage from '../SendMessage';
 
 export default class Messages extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      text: "Some text from state",
-      timeout: null,
-      messages: [],
-      interval: null,
-    };
-  }
-
-  componentDidUpdate() {
-    console.log("componentWillUpdate");
-    console.log(this.state.messages.length, this.state.messages.length % 2);
-    if (this.state.messages.length % 2 > 0) {
-      console.log("SetTimeOut 53");
-      setTimeout(() => {
-        this.setState({
-          messages: [
-            ...this.state.messages,
-            { message: "I do not answer you. I am robot", author: "robot" },
-          ],
-        });
-        this.setState({ timeout });
-      }, 2000);
-    }
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.state.timeout);
-
-    this.setState({ timeout: null });
-  }
-
   state = {
-    messages: [],
+    messages: [
+      { message: 'message 0', author: 'robot', id: 0 },
+      { message: 'message 1', author: 'robot', id: 1 },
+      { message: 'message 2', author: 'robot', id: 2 },
+      { message: 'message 3', author: 'robot', id: 3 },
+      { message: 'message 4', author: 'robot', id: 4 },
+      { message: 'message 5', author: 'robot', id: 5 },
+      { message: 'message 6', author: 'robot', id: 6 },
+      { message: 'message 7', author: 'robot', id: 7 },
+      { message: 'message 8', author: 'robot', id: 8 },
+    ],
+    
+    chats: {
+      1: {
+        name: 'Chat 1',
+        messages: [0, 7, 4, 6],
+      },
+      2: {
+        name: 'Chat 2',
+        messages: [1, 3],
+      },
+      3: {
+        name: 'Chat 3',
+        messages: [4],
+      },
+      4: {
+        name: 'Chat 4',
+        messages: [8, 2],
+      },
+    },
   };
 
   static propTypes = {
@@ -52,30 +43,24 @@ export default class Messages extends React.Component {
   };
 
   static defaultProps = {
-    chatId: -1,
+    chatId: 1,
   };
 
   send = (objMsg) => {
-    this.setState({ messages: [...this.state.messages, objMsg] });
+    const newMesId = this.state.messages.length;
+    this.setState({ messages: [...this.state.messages, {...objMsg, id: newMesId}] });
+    const chats = {...this.state.chats};
+    chats[this.props.chatId].messages.push(newMesId);
+    debugger
+    this.setState({chats: {...chats}});
   };
 
-  render() {
-    console.log("render");
+  render() { 
     return (
       <>
-        <Header chatId={this.props.chatId} className="main-top" />
-        <div className="main-container">
-          <div className="main-box">
-            <div className="main-box-1st  chatlist" >
-            <ChatList /></div>
-            <div className="main-box-2nd">
-            <MessageList
-              messages={this.state.messages}
-              
-            /></div></div>
-            <SendMessage send={this.send} />
-          
-        </div>
+        <h2>{this.state.chats[this.props.chatId].name}</h2>
+        <MessageList messages={this.state.messages.filter(({id}) => this.state.chats[this.props.chatId].messages.includes(id))} />
+        <SendMessage send={this.send} />
       </>
     );
   }

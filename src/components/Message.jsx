@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import styles from "../styles/Message";
+import styles from '../styles/Message';
 
 export default class Message extends React.Component {
   static propTypes = {
@@ -14,7 +14,7 @@ export default class Message extends React.Component {
       <div
         style={{
           ...styles.message,
-          alignSelf: this.props.author === "robot" ? "flex-start" : "flex-end",
+          alignSelf: this.props.author === 'robot' ? 'flex-start' : 'flex-end',
         }}
       >
         <div>{this.props.message}</div>
