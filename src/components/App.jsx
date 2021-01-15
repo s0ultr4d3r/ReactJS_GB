@@ -1,20 +1,21 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import Header from "./Header";
-import Messages from "./pages/Messages";
-import PropTypes from "prop-types";
+import Header from './Header';
+import Messages from './pages/Messages';
+import PropTypes from 'prop-types';
+import Router from './Router';
 
-import "../styles/App.css";
+// import "../styles/App.css";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      text: "Some text from state",
+      text: 'Some text from state',
       timeout: null,
       messages: [],
       interval: null,
@@ -32,13 +33,13 @@ export default class App extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (
       prevState.messages.length < this.state.messages.length &&
-      this.state.messages[this.state.messages.length - 1].author === "me"
+      this.state.messages[this.state.messages.length - 1].author === 'me'
     ) {
       setTimeout(() => {
         this.setState({
           messages: [
             ...this.state.messages,
-            { message: "I do not answer you. I am robot", author: "robot" },
+            { message: 'I do not answer you. I am robot', author: 'robot' },
           ],
         });
         this.setState({ timeout });
@@ -57,7 +58,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    console.log("render");
+    console.log('render');
     return (
       <MuiThemeProvider>
         <BrowserRouter>
@@ -84,19 +85,7 @@ export default class App extends React.Component {
      <Link to="/chat/3">Chat3</Link>
      <Link to="/chat/4">Chat4</Link>
     </nav> */}
-            <Switch>
-              <Route exact path="/" component={Messages} />
-              <Route
-                path="/chat/:chatId"
-                render={(obj) => <Messages chatId={obj.match.params.chatId} />}
-              />
-              <div className="main-top">
-                <Route
-                  path="/chat/:chatId"
-                  render={(obj) => <Header chatId={obj.match.params.chatId} />}
-                />
-              </div>
-            </Switch>{" "}
+            <Router />
           </main>
         </BrowserRouter>
       </MuiThemeProvider>

@@ -6,7 +6,7 @@ main {
    display: flex;
    align-items: center;
    justify-content: center;
-   flex-direction: column;
+  
 }
 
 .main-top {
@@ -40,6 +40,6 @@ main {
 .main-box-2nd {
    
     display: inline-block;
-    flex-direction: column;
+    /* flex-direction: column; */
     
 }

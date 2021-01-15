@@ -24,3 +24,7 @@ yarn-error.log*
 
 #metodichka
 /components/metod_src
+
+#eslint & prettier
+.eslintrc.js*
+.prettierrc.js

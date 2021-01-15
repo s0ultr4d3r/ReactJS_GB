@@ -6,8 +6,6 @@ import SendMessage from "../SendMessage";
 import Header from "../Header";
 import ChatList from "../ChatList";
 
-import "../../styles/App.css";
-
 import "../../styles/Messages.css";
 
 export default class Messages extends React.Component {
@@ -68,13 +66,15 @@ export default class Messages extends React.Component {
         <Header chatId={this.props.chatId} className="main-top" />
         <div className="main-container">
           <div className="main-box">
-            <ChatList className="main-box-1st  chatlist" />
+            <div className="main-box-1st  chatlist" >
+            <ChatList /></div>
+            <div className="main-box-2nd">
             <MessageList
               messages={this.state.messages}
-              className="main-box-2nd"
-            />
-            <SendMessage send={this.send} className="main-box-2nd" />
-          </div>
+              
+            /></div></div>
+            <SendMessage send={this.send} />
+          
         </div>
       </>
     );
