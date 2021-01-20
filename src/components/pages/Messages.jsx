@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
+import { Link } from "react-router-dom";
 
 import MessageList from '../MessageList';
 
@@ -62,7 +63,12 @@ class Messages extends React.Component {
   render() { 
     return (
       <>
-        <h2>{this.state.chats[this.props.chatId].name}</h2>
+        <h2>{this.state.chats[this.props.chatId].name} <Link
+          to="/profile"
+          style={{ fontSize: "20px", alignContent: 'flex-end' }}
+        >
+          Profile
+        </Link></h2>
         <MessageList messages={this.props.messagesStore.filter(({id}) => this.state.chats[this.props.chatId].messages.includes(id))} />
         <SendMessage send={this.send} />
       </>
