@@ -17,7 +17,7 @@ const initState = [
       switch(action.type){
           case SEND_MESSAGE:
             const newMesId = store.length;
-           return [...store, {message: action.message, author: message.author, id: newMesId, chatId: action.chatId}];
+           return [...store, {message: action.message, author: action.author, id: newMesId, chatId: action.chatId}];
            default:
               return store; 
       }

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 
 import MessageList from '../MessageList';
@@ -52,10 +53,9 @@ class Messages extends React.Component {
   send = (objMsg) => {
     const newMesId = this.state.messages.length;
     this.setState({ messages: [...this.state.messages, {...objMsg, id: newMesId}] });
-    this.props.sendMessage(objMsg.message, objMsg.author, this.props.chatId)
+    this.props.sendMessage(objMsg.message, objMsg.author, this.props.chatId);
     const chats = {...this.state.chats};
     chats[this.props.chatId].messages.push(newMesId);
-    debugger
     this.setState({chats: {...chats}});
   };
 
